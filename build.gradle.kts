@@ -17,7 +17,6 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
     maven("https://jitpack.io")
-    maven("https://repo.opencollab.dev/main/")
 }
 
 dependencies {
@@ -27,11 +26,6 @@ dependencies {
     implementation("net.kyori:adventure-api:4.19.0")
     implementation("net.kyori:adventure-platform-bungeecord:4.3.4")
     implementation("net.kyori:adventure-text-minimessage:4.19.0")
-
-    compileOnly("org.geysermc.geyser:api:2.4.2-SNAPSHOT")
-    compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
-
-    compileOnly("com.viaversion:viaversion-api:5.2.2-SNAPSHOT")
 
     implementation("one.tranic:t-base:1.2.6")
     implementation("one.tranic:t-utils:1.2.2.1")
