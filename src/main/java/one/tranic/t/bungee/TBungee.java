@@ -20,6 +20,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Deprecated
+@SuppressWarnings("unused")
 public class TBungee {
     private static boolean initialized = false;
     private static BungeeAudiences adventure;
