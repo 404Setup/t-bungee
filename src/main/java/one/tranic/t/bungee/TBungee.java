@@ -36,12 +36,12 @@ public class TBungee {
         if (initialized) return;
         adventure = BungeeAudiences.create(plugin);
         try {
-            Reflect.assignToStaticFieldIfUninitialized(TBase.class, "getConsoleSourceSupplier", (Supplier<CommandSource<?, ?>>) TBungee::getBungeeConsoleSource, false);
-            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlayerWithStringMethod", (Function<String, Player<?>>) BungeePlayer::createPlayer, false);
-            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlayerWithUUIDMethod", (Function<UUID, Player<?>>) BungeePlayer::createPlayer, false);
-            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getOnlinePlayersMethod", (Supplier<List<Player<?>>>) BungeePlayers::getOnlinePlayers, false);
-            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlatformOnlinePlayersMethod", (Supplier<List<?>>) BungeePlayers::getPlatformOnlinePlayers, false);
-            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getOnlinePlayersNameMethod", (Supplier<List<String>>) BungeePlayers::getOnlinePlayersName, false);
+            Reflect.assignToStaticFieldIfUninitialized(TBase.class, "getConsoleSourceSupplier", (Supplier<CommandSource<?, ?>>) TBungee::getBungeeConsoleSource);
+            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlayerWithStringMethod", (Function<String, Player<?>>) BungeePlayer::createPlayer);
+            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlayerWithUUIDMethod", (Function<UUID, Player<?>>) BungeePlayer::createPlayer);
+            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getOnlinePlayersMethod", (Supplier<List<Player<?>>>) BungeePlayers::getOnlinePlayers);
+            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getPlatformOnlinePlayersMethod", (Supplier<List<?>>) BungeePlayers::getPlatformOnlinePlayers);
+            Reflect.assignToStaticFieldIfUninitialized(Players.class, "getOnlinePlayersNameMethod", (Supplier<List<String>>) BungeePlayers::getOnlinePlayersName);
         } catch (Exception e) {
             e.printStackTrace();
             return;
