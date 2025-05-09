@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import one.tranic.t.base.command.source.SystemCommandSource;
-import one.tranic.t.base.message.Message;
 import one.tranic.t.bungee.TBungee;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
 public class BungeeConsoleSource extends SystemCommandSource<CommandSender, ProxiedPlayer> {
     @Override
     public void broadcastMessage(@NotNull Component message) {
-        TBungee.getServer().broadcast(Message.toBaseComponent(message));
+        TBungee.getServer().broadcast(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(message));
     }
 
     @Override
     public void broadcastMessage(@NotNull String message) {
-        TBungee.getServer().broadcast(Message.toBaseComponent(message));
+        TBungee.getServer().broadcast(message);
     }
 
     @Override
@@ -27,11 +26,11 @@ public class BungeeConsoleSource extends SystemCommandSource<CommandSender, Prox
 
     @Override
     public void sendMessage(String message) {
-        getSource().sendMessage(Message.toBaseComponent(message));
+        getSource().sendMessage(message);
     }
 
     @Override
     public void sendMessage(@NotNull Component message) {
-        getSource().sendMessage(Message.toBaseComponent(message));
+        getSource().sendMessage(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(message));
     }
 }

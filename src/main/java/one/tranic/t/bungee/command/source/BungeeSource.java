@@ -5,11 +5,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import one.tranic.t.base.TBase;
 import one.tranic.t.base.command.Operator;
 import one.tranic.t.base.command.source.CommandSource;
-import one.tranic.t.base.message.Message;
 import one.tranic.t.bungee.TBungee;
 import one.tranic.t.bungee.player.BungeePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -83,12 +83,12 @@ public class BungeeSource implements CommandSource<CommandSender, ProxiedPlayer>
 
     @Override
     public void sendMessage(String message) {
-        commandSender.sendMessage(Message.toBaseComponent(message));
+        commandSender.sendMessage(message);
     }
 
     @Override
     public void sendMessage(@NotNull Component message) {
-        commandSender.sendMessage(Message.toBaseComponent(message));
+        commandSender.sendMessage(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(message));
     }
 
     @Override
@@ -109,8 +109,16 @@ public class BungeeSource implements CommandSource<CommandSender, ProxiedPlayer>
     @Override
     public void showTitle(@NotNull Title title) {
         if (isPlayer()) {
-            var t = ProxyServer.getInstance().createTitle().title(Message.toBaseComponent(title.title()))
-                    .subTitle(Message.toBaseComponent(title.subtitle()));
+            var t = ProxyServer.getInstance().createTitle().title(
+                            TextComponent.fromLegacyText(
+                                    net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(title.title())
+                            )
+                    )
+                    .subTitle(
+                            TextComponent.fromLegacyText(
+                                    net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(title.subtitle())
+                            )
+                    );
             player.getSourcePlayer().sendTitle(t);
         }
     }

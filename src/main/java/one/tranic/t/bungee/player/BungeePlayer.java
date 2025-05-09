@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import one.tranic.t.base.message.Message;
 import one.tranic.t.base.player.BedrockPlayer;
 import one.tranic.t.base.player.Location;
 import org.jetbrains.annotations.NotNull;
@@ -121,23 +120,23 @@ public class BungeePlayer implements one.tranic.t.base.player.Player<ProxiedPlay
 
     @Override
     public boolean kick(String reason) {
-        player.disconnect(Message.toBaseComponent(reason));
+        player.disconnect(reason);
         return true;
     }
 
     @Override
     public boolean kick(@NotNull Component reason) {
-        player.disconnect(Message.toBaseComponent(reason));
+        player.disconnect(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(reason));
         return true;
     }
 
     @Override
     public void sendMessage(@NotNull String message) {
-        player.sendMessage(Message.toBaseComponent(message));
+        player.sendMessage(message);
     }
 
     @Override
     public void sendMessage(@NotNull Component message) {
-        player.sendMessage(Message.toBaseComponent(message));
+        player.sendMessage(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(message));
     }
 }

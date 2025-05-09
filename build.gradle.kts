@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "one.tranic"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     maven("https://maven-central-asia.storage-download.googleapis.com/maven2/")
@@ -27,8 +27,8 @@ dependencies {
     implementation("net.kyori:adventure-platform-bungeecord:4.3.4")
     implementation("net.kyori:adventure-text-minimessage:4.21.0")
 
-    implementation("one.tranic:t-base:1.2.8")
-    implementation("one.tranic:t-utils:1.2.3")
+    implementation("one.tranic:t-base:1.2.9")
+    implementation("one.tranic:t-utils:1.3.0")
 }
 
 val targetJavaVersion = 17
