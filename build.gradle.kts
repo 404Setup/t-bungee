@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "one.tranic"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     maven("https://maven-central-asia.storage-download.googleapis.com/maven2/")
@@ -27,7 +27,7 @@ dependencies {
     implementation("net.kyori:adventure-platform-bungeecord:4.3.4")
     implementation("net.kyori:adventure-text-minimessage:4.21.0")
 
-    implementation("one.tranic:t-base:1.2.9")
+    implementation("one.tranic:t-base:1.3.2")
     implementation("one.tranic:t-utils:1.3.0")
 }
 

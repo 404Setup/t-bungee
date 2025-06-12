@@ -6,6 +6,7 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import one.tranic.t.base.player.BedrockPlayer;
 import one.tranic.t.base.player.Location;
+import one.tranic.t.base.player.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,15 +14,17 @@ import java.util.Locale;
 import java.util.UUID;
 
 @Deprecated
-public class BungeePlayer implements one.tranic.t.base.player.Player<ProxiedPlayer> {
+public class BungeePlayer implements Player<ProxiedPlayer> {
     private final ProxiedPlayer player;
+    private final BedrockPlayer<ProxiedPlayer> bedrockPlayer;
 
     public BungeePlayer(ProxiedPlayer player) {
         this.player = player;
+        this.bedrockPlayer = new BedrockPlayer<>(this);
     }
 
     public BungeePlayer(CommandSender commandSender) {
-        this.player = (ProxiedPlayer) commandSender;
+        this((ProxiedPlayer) commandSender);
     }
 
     /**
@@ -63,6 +66,11 @@ public class BungeePlayer implements one.tranic.t.base.player.Player<ProxiedPlay
     }
 
     @Override
+    public @NotNull BedrockPlayer<ProxiedPlayer> toBedrockPlayer() {
+        return bedrockPlayer;
+    }
+
+    @Override
     public @NotNull String getUsername() {
         return player.getName();
     }
@@ -90,7 +98,7 @@ public class BungeePlayer implements one.tranic.t.base.player.Player<ProxiedPlay
     @Override
     public long getPing() {
         if (isBedrockPlayer()) {
-            long ping = BedrockPlayer.getPing(getUniqueId());
+            long ping = bedrockPlayer.ping();
             if (ping != -1) return ping;
         }
         return player.getPing();
@@ -103,7 +111,7 @@ public class BungeePlayer implements one.tranic.t.base.player.Player<ProxiedPlay
 
     @Override
     public @Nullable String getClientBrand() {
-        if (isBedrockPlayer()) return BedrockPlayer.getPlatform(getUniqueId());
+        if (isBedrockPlayer()) return bedrockPlayer.platform();
         return null;
     }
 
